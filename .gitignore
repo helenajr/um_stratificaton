@@ -1,0 +1,18 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RDataTmp
+
+# All types of relevant datafile and contents of data folder
+*.csv
+*.RDS
+*.xlsx
+*data/*
+*reports/*
