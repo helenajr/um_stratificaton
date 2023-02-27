@@ -1,0 +1,45 @@
+---
+title: "Analysis"
+author: "Helena"
+date: '2023-02-27'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Purpose of this document
+
+This is intended to explain the analytic code for the paper 'Sensitivity and specificity of different prognostic systems when used to stratify for surveillance in a population of uveal melanoma patients'. I would recommend reading the paper before trying to understand the code. There is an R script called 'Analysis' in the 'scripts' folder. Running that script produces all the plots and summaries that are in the paper. This document walks through the code in that script.
+
+This code loads all the required packages and the dataset:
+```{r message = FALSE, warning = FALSE}
+library(tidyverse)
+library(lubridate)
+library(plotROC)
+library(ROCit)
+library(scales)
+library(here)
+library(PropCIs)
+source(here("scripts", "Functions.R"))
+
+roc_data <- readRDS(here("data", "roc_data.RDS"))
+```
+
+At this point the dataset has been prepared for analysis. The preparation steps will be addressed in a separate markdown file. The data should now look like this:
+
+```{r}
+str(roc_data)
+```
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
