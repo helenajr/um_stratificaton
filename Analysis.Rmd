@@ -52,7 +52,7 @@ roc_data <- roc_data %>%
 
 ### Table 2: Descriptive statistics
 
-This is all self-explanatory si I've just included a few example lines and all the outputs went into Table 2 of the paper.I used either count(), median(), or range() for each column as appropriate. Note that all the counts, medians and ranges are all consistent with previously published estimates so don't raise any data quality concerns. 
+This is all self-explanatory so I've just included a few example lines and all the outputs went into Table 2 of the paper.I used either count(), median(), or range() for each column as appropriate. Note that all the counts, medians and ranges are all consistent with previously published estimates so don't raise any data quality concerns. 
 ```{r}
 roc_data %>%
   count(outcome)
