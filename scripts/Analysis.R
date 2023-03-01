@@ -864,18 +864,18 @@ fig5 <- ggplot(longdata, aes(d = D, m = M, color = name)) +
     fill = "purple", alpha = 0.5
   ) +
   annotate(
-    geom = "rect", xmin = cuts_tibble_mm$inv_spec_upper[1], xmax = cuts_tibble_mm$inv_spec_lower[1],
-    ymin = cuts_tibble_mm$sens_lower[1], ymax = cuts_tibble_mm$sens_upper[1],
+    geom = "rect", xmin = cuts_tibble_mm_ngs$inv_spec_upper[1], xmax = cuts_tibble_mm_ngs$inv_spec_lower[1],
+    ymin = cuts_tibble_mm_ngs$sens_lower[1], ymax = cuts_tibble_mm_ngs$sens_upper[1],
     fill = "black", alpha = 0.4
   ) +
   annotate(
-    geom = "rect", xmin = cuts_tibble_mm$inv_spec_upper[3], xmax = cuts_tibble_mm$inv_spec_lower[3],
-    ymin = cuts_tibble_mm$sens_lower[3], ymax = cuts_tibble_mm$sens_upper[3],
+    geom = "rect", xmin = cuts_tibble_mm_ngs$inv_spec_upper[3], xmax = cuts_tibble_mm_ngs$inv_spec_lower[3],
+    ymin = cuts_tibble_mm_ngs$sens_lower[3], ymax = cuts_tibble_mm_ngs$sens_upper[3],
     fill = "black", alpha = 0.4
   ) +
   annotate(
-    geom = "rect", xmin = cuts_tibble_mm$inv_spec_upper[4], xmax = cuts_tibble_mm$inv_spec_lower[4],
-    ymin = cuts_tibble_mm$sens_lower[4], ymax = cuts_tibble_mm$sens_upper[4],
+    geom = "rect", xmin = cuts_tibble_mm_ngs$inv_spec_upper[4], xmax = cuts_tibble_mm_ngs$inv_spec_lower[4],
+    ymin = cuts_tibble_mm_ngs$sens_lower[4], ymax = cuts_tibble_mm_ngs$sens_upper[4],
     fill = "black", alpha = 0.4
   ) +
   geom_roc(n.cuts = 0, labels = FALSE) +
@@ -883,20 +883,20 @@ fig5 <- ggplot(longdata, aes(d = D, m = M, color = name)) +
   geom_point(x = stage2a_tibble$inv_spec, y = stage2a_tibble$sensitivity, color = "purple") +
   geom_point(x = stage2b_tibble$inv_spec, y = stage2b_tibble$sensitivity, color = "purple") +
   geom_point(x = stage3a_tibble$inv_spec, y = stage3a_tibble$sensitivity, color = "purple") +
-  geom_point(x = cuts_tibble_mm$inv_spec[1], y = cuts_tibble_mm$sensitivity[1], color = "black") +
+  geom_point(x = cuts_tibble_mm_ngs$inv_spec[1], y = cuts_tibble_mm_ngs$sensitivity[1], color = "black") +
   annotate("text",
-           x = cuts_tibble_mm$inv_spec[1] - 0.07, y = cuts_tibble_mm$sensitivity[1],
-           label = cuts_tibble_mm$cutoff[1], size = 4
+           x = cuts_tibble_mm_ngs$inv_spec[1] - 0.07, y = cuts_tibble_mm_ngs$sensitivity[1],
+           label = cuts_tibble_mm_ngs$cutoff[1], size = 4
   ) +
-  geom_point(x = cuts_tibble_mm$inv_spec[3], y = cuts_tibble_mm$sensitivity[3], color = "black") +
+  geom_point(x = cuts_tibble_mm_ngs$inv_spec[3], y = cuts_tibble_mm_ngs$sensitivity[3], color = "black") +
   annotate("text",
-           x = cuts_tibble_mm$inv_spec[3] - 0.08, y = cuts_tibble_mm$sensitivity[3],
-           label = cuts_tibble_mm$cutoff[3], size = 4
+           x = cuts_tibble_mm_ngs$inv_spec[3] - 0.08, y = cuts_tibble_mm_ngs$sensitivity[3],
+           label = cuts_tibble_mm_ngs$cutoff[3], size = 4
   ) +
-  geom_point(x = cuts_tibble_mm$inv_spec[4], y = cuts_tibble_mm$sensitivity[4], color = "black") +
+  geom_point(x = cuts_tibble_mm_ngs$inv_spec[4], y = cuts_tibble_mm_ngs$sensitivity[4], color = "black") +
   annotate("text",
-           x = cuts_tibble_mm$inv_spec[4], y = cuts_tibble_mm$sensitivity[4] + 0.06,
-           label = cuts_tibble_mm$cutoff[4], size = 4
+           x = cuts_tibble_mm_ngs$inv_spec[4], y = cuts_tibble_mm_ngs$sensitivity[4] + 0.06,
+           label = cuts_tibble_mm_ngs$cutoff[4], size = 4
   ) +
   annotate("text",
            x = stage2a_tibble$inv_spec + 0.13, y = stage2a_tibble$sensitivity, label = ">= IIA", size = 4,
