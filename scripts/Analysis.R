@@ -186,10 +186,10 @@ m3_tibble3 <- tibble(
   NPV = TN / (TN + FN),
   PPV = TP / (FP + TP),
   surveillance = TP + FP,
-  sens_lower = calc_chr3_sens_ci95(roc_data3)[[1]][1],
-  sens_upper = calc_chr3_sens_ci95(roc_data3)[[1]][2],
-  spec_lower = calc_chr3_spec_ci95(roc_data3)[[1]][1],
-  spec_upper = calc_chr3_spec_ci95(roc_data3)[[1]][2],
+  sens_lower = calc_sens_ci2(roc_data3, m3_str)[[1]][1],
+  sens_upper = calc_sens_ci2(roc_data3, m3_str)[[1]][2],
+  spec_lower = calc_sens_ci2(roc_data3, m3_str)[[1]][1],
+  spec_upper = calc_sens_ci2(roc_data3, m3_str)[[1]][2],
   inv_spec = 1 - specificity,
   inv_spec_upper = 1 - spec_upper,
   inv_spec_lower = 1 - spec_lower
@@ -244,10 +244,10 @@ stage2a_tibble3 <- tibble(
   NPV = TN / (TN + FN),
   PPV = TP / (FP + TP),
   surveillance = TP + FP,
-  sens_lower = calc_stage2a_sens_ci95(roc_data3)[[1]][1],
-  sens_upper = calc_stage2a_sens_ci95(roc_data3)[[1]][2],
-  spec_lower = calc_stage2a_spec_ci95(roc_data3)[[1]][1],
-  spec_upper = calc_stage2a_spec_ci95(roc_data3)[[1]][2],
+  sens_lower = calc_sens_ci2(roc_data3, stage_2a)[[1]][1],
+  sens_upper = calc_sens_ci2(roc_data3, stage_2a)[[1]][2],
+  spec_lower = calc_sens_ci2(roc_data3, stage_2a)[[1]][1],
+  spec_upper = calc_sens_ci2(roc_data3, stage_2a)[[1]][2],
   inv_spec = 1 - specificity,
   inv_spec_upper = 1 - spec_upper,
   inv_spec_lower = 1 - spec_lower
@@ -301,10 +301,10 @@ stage2b_tibble3 <- tibble(
   NPV = TN / (TN + FN),
   PPV = TP / (FP + TP),
   surveillance = TP + FP,
-  sens_lower = calc_stage2b_sens_ci95(roc_data3)[[1]][1],
-  sens_upper = calc_stage2b_sens_ci95(roc_data3)[[1]][2],
-  spec_lower = calc_stage2b_spec_ci95(roc_data3)[[1]][1],
-  spec_upper = calc_stage2b_spec_ci95(roc_data3)[[1]][2],
+  sens_lower = calc_sens_ci2(roc_data3, stage_2b)[[1]][1],
+  sens_upper = calc_sens_ci2(roc_data3, stage_2b)[[1]][2],
+  spec_lower = calc_sens_ci2(roc_data3, stage_2b)[[1]][1],
+  spec_upper = calc_sens_ci2(roc_data3, stage_2b)[[1]][2],
   inv_spec = 1 - specificity,
   inv_spec_upper = 1 - spec_upper,
   inv_spec_lower = 1 - spec_lower
@@ -358,10 +358,10 @@ stage3a_tibble3 <- tibble(
   NPV = TN / (TN + FN),
   PPV = TP / (FP + TP),
   surveillance = TP + FP,
-  sens_lower = calc_stage3a_sens_ci95(roc_data3)[[1]][1],
-  sens_upper = calc_stage3a_sens_ci95(roc_data3)[[1]][2],
-  spec_lower = calc_stage3a_spec_ci95(roc_data3)[[1]][1],
-  spec_upper = calc_stage3a_spec_ci95(roc_data3)[[1]][2],
+  sens_lower = calc_sens_ci2(roc_data3, stage_3a)[[1]][1],
+  sens_upper = calc_sens_ci2(roc_data3, stage_3a)[[1]][2],
+  spec_lower = calc_sens_ci2(roc_data3, stage_3a)[[1]][1],
+  spec_upper = calc_sens_ci2(roc_data3, stage_3a)[[1]][2],
   inv_spec = 1 - specificity,
   inv_spec_upper = 1 - spec_upper,
   inv_spec_lower = 1 - spec_lower
@@ -1013,6 +1013,13 @@ fig4 <- strategies %>% ggplot(aes(x = inv_spec, y = sensitivity)) +
   theme(legend.background = element_blank())
 
 fig4
+
+### Calculation of cost savings --------------------------------------
+calc_saving(211.24, 200, 0.51, 0.38)
+
+calc_saving(211.24, 200, 0.65, 0.44)
+
+calc_saving(211.24, 200, 0.55, 0.37)
 
 ### Save all outputs
 ggsave(here("outputs", "fig1.png"), plot = (dist_lumpo + dist_ajcc), width = 8.27, height = 4, units = "in")
