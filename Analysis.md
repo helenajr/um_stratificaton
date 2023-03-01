@@ -566,3 +566,40 @@ strategies %>% ggplot(aes(x = inv_spec, y = sensitivity)) +
 ```
 
 ![](Analysis_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+
+### Cost saving calculation
+
+The paper gives an estimate for the cost saving acheived by switched
+from a less specific system for stratification to a more specific one,
+given equal sensitivity. When a system is more specific there are fewer
+false positives and therefore fewer people scanned. I made this custom
+function which takes four arguments - the cost of a scan, the population
+of patients and the specificity of two systems being compared.
+
+It then works out the difference in false positives and the difference
+in pounds.
+
+``` r
+calc_saving <- function(cost_scan, pop_size, spec1, spec2) {
+  prev <- prevalence * pop_size
+  tn1 <- (pop_size-prev)*spec1
+  fp1 <- (pop_size-prev)-tn1
+  tn2 <- (pop_size-prev)*spec2
+  fp2 <- (pop_size-prev)-tn2
+  
+  cost_5yscan <- cost_scan*10
+  
+  people_saved <- round(fp1 - fp2)
+  money_saved <- people_saved * cost_5yscan
+  results <- list(people_saved, money_saved)
+  return(results)
+}
+
+calc_saving(211.24, 200, 0.51, 0.38)
+```
+
+    ## [[1]]
+    ## [1] -19
+    ## 
+    ## [[2]]
+    ## [1] -40135.6
