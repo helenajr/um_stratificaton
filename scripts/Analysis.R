@@ -246,8 +246,8 @@ stage2a_tibble3 <- tibble(
   surveillance = TP + FP,
   sens_lower = calc_sens_ci2(roc_data3, stage_2a)[[1]][1],
   sens_upper = calc_sens_ci2(roc_data3, stage_2a)[[1]][2],
-  spec_lower = calc_sens_ci2(roc_data3, stage_2a)[[1]][1],
-  spec_upper = calc_sens_ci2(roc_data3, stage_2a)[[1]][2],
+  spec_lower = calc_spec_ci2(roc_data3, stage_2a)[[1]][1],
+  spec_upper = calc_spec_ci2(roc_data3, stage_2a)[[1]][2],
   inv_spec = 1 - specificity,
   inv_spec_upper = 1 - spec_upper,
   inv_spec_lower = 1 - spec_lower
@@ -303,8 +303,8 @@ stage2b_tibble3 <- tibble(
   surveillance = TP + FP,
   sens_lower = calc_sens_ci2(roc_data3, stage_2b)[[1]][1],
   sens_upper = calc_sens_ci2(roc_data3, stage_2b)[[1]][2],
-  spec_lower = calc_sens_ci2(roc_data3, stage_2b)[[1]][1],
-  spec_upper = calc_sens_ci2(roc_data3, stage_2b)[[1]][2],
+  spec_lower = calc_spec_ci2(roc_data3, stage_2b)[[1]][1],
+  spec_upper = calc_spec_ci2(roc_data3, stage_2b)[[1]][2],
   inv_spec = 1 - specificity,
   inv_spec_upper = 1 - spec_upper,
   inv_spec_lower = 1 - spec_lower
@@ -360,8 +360,8 @@ stage3a_tibble3 <- tibble(
   surveillance = TP + FP,
   sens_lower = calc_sens_ci2(roc_data3, stage_3a)[[1]][1],
   sens_upper = calc_sens_ci2(roc_data3, stage_3a)[[1]][2],
-  spec_lower = calc_sens_ci2(roc_data3, stage_3a)[[1]][1],
-  spec_upper = calc_sens_ci2(roc_data3, stage_3a)[[1]][2],
+  spec_lower = calc_spec_ci2(roc_data3, stage_3a)[[1]][1],
+  spec_upper = calc_spec_ci2(roc_data3, stage_3a)[[1]][2],
   inv_spec = 1 - specificity,
   inv_spec_upper = 1 - spec_upper,
   inv_spec_lower = 1 - spec_lower
