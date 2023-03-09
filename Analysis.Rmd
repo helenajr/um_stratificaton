@@ -2,11 +2,13 @@
 title: "Analysis"
 author: "Helena"
 date: '2023-02-27'
-output: github_document
+output: 
+  word_document:
+          reference_docx: word_style1.docx
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, dpi = 300)
 ```
 
 ### Purpose of this document

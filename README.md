@@ -3,7 +3,9 @@ Code required for the paper 'Sensitivity and specificity of different prognostic
 
 To understand this project:
 1) Read the paper/ dissertation (not published yet)
-2) Read 'Analysis.md' which walks through different elements of the code
-3) 'Analysis.R' and 'Functions.R' in scripts contain the full code for the analysis part.
+2) Read '1_assemble.md' and 'Analysis.md' which walks through different elements of the code
+3) Scripts contain the full code as R scripts which are described by the .md files. They should be run in order.
 
-I have not yet included the code / explainer for the data wrangling part - work in progress
+I'm still adding code to cover all the steps between assembly and analysis.
+
+The data is not publicly available because it is sensitive and there is a risk of re-identification. Contact the Ocular Oncology Biobank at the University of Liverpool with any queries regarding access.
