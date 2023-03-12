@@ -3,6 +3,7 @@ title: "Analysis"
 author: "Helena"
 date: '2023-02-27'
 output: 
+  github_document: default
   word_document:
           reference_docx: word_style1.docx
 ---

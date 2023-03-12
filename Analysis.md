@@ -459,7 +459,7 @@ roc_data3 <- roc_data %>%
 ```
 
 The differences between these two subpopulations are summarised in
-figure s3
+figure s4
 
 ``` r
 prevalence2 <- calc_prevalence(roc_data2)
@@ -475,20 +475,20 @@ prev_tibble <- tibble(
   prev_high = c(ci_prev2[[1]][[2]], ci_prev3[[1]][[2]])
 )
 
-figs3a <- prev_tibble %>% ggplot(aes(x = subpopulation, y = prevalence, ymax = prev_high, ymin = prev_low)) +
+figs4a <- prev_tibble %>% ggplot(aes(x = subpopulation, y = prevalence, ymax = prev_high, ymin = prev_low)) +
   geom_bar(stat = "identity") +
   geom_errorbar(width = 0.1) +
   scale_y_continuous(limits = c(0, 1)) +
   theme_classic() +
-  labs(title = "A: Prevalence of outcome")
+  labs(title = "A: Incidence of endpoint", y = "incidence")
 
-figs3b <- roc_data %>%
+figs4b <- roc_data %>%
   ggplot(aes(with3, area)) +
   geom_boxplot() +
   labs(x = NULL, y = "tumour size (mm^2)", title = "B: Tumour size in subpopulations") +
   theme_classic()
 
-figs3a + figs3b
+figs4a + figs4b
 ```
 
 ![](Analysis_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
