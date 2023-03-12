@@ -928,21 +928,21 @@ prev_tibble <- tibble(
   prev_high = c(ci_prev2[[1]][[2]], ci_prev3[[1]][[2]])
 )
 
-figs3a <- prev_tibble %>% ggplot(aes(x = subpopulation, y = prevalence, ymax = prev_high, ymin = prev_low)) +
+figs4a <- prev_tibble %>% ggplot(aes(x = subpopulation, y = prevalence, ymax = prev_high, ymin = prev_low)) +
   geom_bar(stat = "identity") +
   geom_errorbar(width = 0.1) +
   scale_y_continuous(limits = c(0, 1)) +
   theme_classic() +
-  labs(title = "A: Prevalence of outcome")
+  labs(title = "A: Incidence of endpoint", y = "incidence")
 
-figs3b <- roc_data %>%
+figs4b <- roc_data %>%
   ggplot(aes(with3, area)) +
   geom_boxplot() +
   labs(x = NULL, y = "tumour size (mm^2)", title = "B: Tumour size in subpopulations") +
   theme_classic()
 
-figs3 <- figs3a + figs3b
-figs3
+figs4 <- figs4a + figs4b
+figs4
 
 #### Summary of Figure 4 lumpo strategy
 roc_data <- roc_data %>% mutate(
@@ -1015,18 +1015,23 @@ fig4 <- strategies %>% ggplot(aes(x = inv_spec, y = sensitivity)) +
 fig4
 
 ### Calculation of cost savings --------------------------------------
-calc_saving(211.24, 200, 0.51, 0.38)
+calc_saving(211.24, 200, 0.51, 0.38)#MRI
+calc_saving(135.09, 200, 0.51, 0.38)#US
 
 calc_saving(211.24, 200, 0.65, 0.44)
+calc_saving(135.09, 200, 0.65, 0.44)
+
 
 calc_saving(211.24, 200, 0.55, 0.37)
+calc_saving(135.09, 200, 0.55, 0.37)
+
 
 ### Save all outputs
 ggsave(here("outputs", "fig1.png"), plot = (dist_lumpo + dist_ajcc), width = 8.27, height = 4, units = "in")
 ggsave(here("outputs", "fig2.png"), plot = fig2, width = 5, height = 5, units = "in")
 ggsave(here("outputs", "fig3.png"), plot = (fig3a + fig3b), width = 8.27, height = 4, units = "in")
 ggsave(here("outputs", "fig5.png"), plot = fig5, width = 5, height = 5, units = "in")
-ggsave(here("outputs", "figs3.png"), plot = (figs3), width = 8.27, height = 4, units = "in")
+ggsave(here("outputs", "figs4.png"), plot = (figs4), width = 8.27, height = 4, units = "in")
 ggsave(here("outputs", "fig4.png"), plot = fig4, width = 5, height = 5, units = "in")
 
 
