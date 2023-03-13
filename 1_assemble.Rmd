@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Assembly
-This markdown file explains the code in 1_assemble.R. The raw dataset is a series of csv files, one csv file for each year (2007-2016). The first step is to combine these sets into one big table. Like most data which has been manually collated in excel there is inconsistency among the column names which makes this tricky... The following script works reproducibly with the csv files used for the paper but may need tweaking to be effective on other files. I could have just manually fixed the problems with the csvs but I thought this would be more fun (and a better way of doing it if you had loads of csv files). 
+This markdown file explains the code in 1_assemble.R. The raw dataset is a series of csv files, one csv file for each year (2007-2016). The first step is to combine these sets into one big table. Like most data which has been manually collated in excel there is inconsistency among the column names which makes this tricky... The following script works reproducibly with the csv files used for the paper but may need tweaking to be effective on other files. I could have just manually fixed the problems with the csvs but I thought this would be a better way of doing it if you had loads of csv files. 
 
 ```{r message = FALSE, warning = FALSE}
 #Load required packages
@@ -21,7 +21,7 @@ library(tidyverse)
 library(here)
 ```
 
-A fun quirk of the csvs is some of them have an extra column, which when reading the files in in the loop below, causes the datasets without it to have a blank column called '27', which causes problems when you try and combine the datasets, so I wrote a function to deal with this if it is present.
+A quirk of the csvs is some of them have an extra column, which when reading the files in in the loop below, causes the datasets without it to have a blank column called '27', which causes problems when you try and combine the datasets, so I wrote a function to deal with this if it is present.
 
 ```{r}
 #This function removes column 27 if present (otherise causes problems) -----

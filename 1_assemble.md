@@ -12,8 +12,8 @@ has been manually collated in excel there is inconsistency among the
 column names which makes this tricky… The following script works
 reproducibly with the csv files used for the paper but may need tweaking
 to be effective on other files. I could have just manually fixed the
-problems with the csvs but I thought this would be more fun (and a
-better way of doing it if you had loads of csv files).
+problems with the csvs but I thought this would be a better way of doing
+it if you had loads of csv files.
 
 ``` r
 #Load required packages
@@ -21,7 +21,7 @@ library(tidyverse)
 library(here)
 ```
 
-A fun quirk of the csvs is some of them have an extra column, which when
+A quirk of the csvs is some of them have an extra column, which when
 reading the files in in the loop below, causes the datasets without it
 to have a blank column called ‘27’, which causes problems when you try
 and combine the datasets, so I wrote a function to deal with this if it
@@ -95,9 +95,9 @@ glimpse(fake_ad)
     ## $ oob                     <chr> "001/07", "002/07", NA, "006/07"
     ## $ ageatpm                 <chr> "45", "67", "81", "90"
     ## $ gender                  <chr> "F", "M", "M", "M"
-    ## $ diagnosis               <chr> "Choroidal melanoma", "BDUMP", "Choroidal melanoma", "Choroidal melanom…
-    ## $ primarytreatment        <chr> "prxt", "endoresection + plaque", "biopsy", "enucleation"
-    ## $ dateofpm                <chr> "01/01/2007", "05/10/2007", "16/07/2007", "15/04/2007"
+    ## $ diagnosis               <chr> "Choroidal melanoma", "BDUMP", "Choroidal mela…
+    ## $ primarytreatment        <chr> "prxt", "endoresection + plaque", "biopsy", "e…
+    ## $ dateofpm                <chr> "01/01/2007", "05/10/2007", "16/07/2007", "15/…
     ## $ secondarytreatment      <lgl> NA, NA, NA, NA
     ## $ epithelioid             <chr> "Y", NA, "N", NA
     ## $ loops                   <chr> "Y", NA, "Y", NA
@@ -108,7 +108,7 @@ glimpse(fake_ad)
     ## $ eospread                <chr> "N", "N", "N", "N"
     ## $ status                  <chr> "A", "A", "D", "D"
     ## $ causeofdeath            <chr> NA, NA, "MM", "Other"
-    ## $ dateoflastfollowupdeath <chr> "01/03/2016", "08/09/2011", "09/09/2013", "06/05/2014"
+    ## $ dateoflastfollowupdeath <chr> "01/03/2016", "08/09/2011", "09/09/2013", "06/…
     ## $ genetictest             <chr> "MLPA", NA, "MLPA", NA
     ## $ chr1                    <chr> "N", "N", "N", "N"
     ## $ chr3                    <chr> "L", "N", "N", "N"
