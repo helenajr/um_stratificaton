@@ -5,13 +5,16 @@ Helena
 
 ## Clean
 
-Needless to say, there is quite a bit of cleaning to do before we get to
-the analysis.
+There is quite a bit of cleaning to do before we get to the analysis.
+Cleaning refers to spotting errors and removing them and applying
+exclusion criteria, so as far as is possible the dataset is correct and
+contains only the appropriate people.
 
 ``` r
 #Load the libraries and load the data we assembled in 1_assemble
 library(tidyverse)
 library(lubridate)
+library(here)
 
 data <- readRDS(here("data", "assembled_data.RDS"))
 ```
@@ -39,7 +42,7 @@ data <- data %>%
 ```
 
 The next sections do various bits of tidying up. First some columns are
-renamed to make them easier to type!
+renamed to make them easier to type.
 
 ``` r
 data <- data %>%
@@ -48,7 +51,8 @@ data <- data %>%
 ```
 
 Next the date columns are converted from character to date class and
-number columns are made numeric.
+number columns are made numeric. This is important for calculatiing
+intervals and plotting distributions.
 
 ``` r
 data <- data %>%
@@ -61,10 +65,6 @@ data <- data %>%
          onsetofmm = dmy(onsetofmm))
 ```
 
-    ## Warning in mask$eval_all_mutate(quo): NAs introduced by coercion
-
-    ## Warning in mask$eval_all_mutate(quo): NAs introduced by coercion
-
 Also there are some quirks specific to this dataset that needed
 correction - they are slightly difficult to explain, but feel free to
 ask if you need more info. The dataset used death notifications from the
@@ -76,8 +76,8 @@ Therefore all people listed as “Alive” with last follow up on that date,
 needed the date changed. Also some people did not have any follow up
 listed (normally overseas patients) which may make it appear as though
 their follow-up occurred before their primary treatment (normally the
-day before). In these cases I set follow up to equal the day of their
-primary treatment.
+day before when they arrived at hospital). In these cases I set follow
+up to equal the day of their primary treatment.
 
 ``` r
 data <- data %>%
@@ -98,10 +98,11 @@ data <- data %>%
          dateofpmyear = year(dateofpm))
 ```
 
-Next, the factor fields! So the primary treatment and cause of death
-fields have just been manually enetered as free text and therefore
-contain some inconsistencies. Here I combine bunches of things together
-so we are just left with the categories which are useful for analysis.
+Next, some fields are factors (categories). The primary treatment and
+cause of death fields have just been manually enetered as free text and
+therefore contain some inconsistencies. Here I combine bunches of
+entries that all refer to the same thing into the same category. So we
+are just left with the categories which are useful for analysis.
 
 ``` r
 data <- data %>%
@@ -136,10 +137,20 @@ data <- data %>%
 ```
 
 Finally, apply some exclusion criteria. The analysis only includes
-people having their primary treatment 2007-2016, those people who have
-the minimum data required for the LUMPOIII website. It excludes people
-who already had detectable mets at primary diagnosis and those who had
-non-standard primary treatments.
+people having their primary treatment 2007-2016 and those people who
+have the minimum data required for the LUMPOIII website. It excludes
+people who already had detectable mets at primary diagnosis and those
+who had non-standard primary treatments.
+
+``` r
+data <- data %>%
+  filter(!is.na(lbd) & !is.na(uh) & !is.na(cbi) &
+           !is.na(eospread) & diagnosis == "Choroidal melanoma" & !is.na(ageatpm) & !is.na(gender)) %>%
+  filter(dateofpmyear > 2006,
+         (is.na(lfumets) | lfumets > 0)) %>%
+  filter(!primarytreatment %in% c("ttt", "avastin", "vitrectomy", "observation", "excisionbiopsy",
+                                  "treatmentelsewhere")) 
+```
 
 ``` r
 # Save the dataset
