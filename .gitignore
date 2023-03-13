@@ -1,6 +1,5 @@
 .Rproj.user
 .Rhistory
-.RData
 .Ruserdata
 
 # History files
@@ -11,7 +10,7 @@
 .RDataTmp
 
 # All types of relevant datafile and contents of data folder
-*.csv
+
 *.RDS
 *.xlsx
 *data/*

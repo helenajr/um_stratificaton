@@ -9,7 +9,7 @@ You might be interested in this repo if:
 To understand this project:
 1) Read the paper/ dissertation (not published yet, but ask me for a draft).
 2) All the code files live in the 'scripts' folder. Run these in order to repeat the analysis in the paper.
-3) If you want any commentary on the scripts read '1_assemble.md', '2_clean.md' and 'Analysis.md' which walk through different elements of the code.
+3) If you want any commentary on the scripts read '1_assemble.md', '2_clean.md' etc which walk through different elements of the code.
 4) If you can't find the information you need please message me.
 
 I'm still adding code to cover all the steps between assembly and analysis.
