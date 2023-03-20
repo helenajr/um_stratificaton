@@ -12,7 +12,7 @@ roc_data <- data %>%
                              (lfuyears >= 5 & (is.na(onsetofmm) | lfumets >= 5)) ~ "No mets"),
          outcome_binary = if_else(outcome == "Mets", 1, 0)) %>%
   filter(!is.na(outcome)) %>%
-  select(-oob, -diagnosis, -dateofpm, -secondarytreatment, -followup, -genetictest, -chr1,
+  select(-oob, -diagnosis, -dateofpm, -secondarytreatment, -followup, -chr1,
          -ch6p, -ch6q, -chr8p, -nbap1, -comments, -onsetofmm, -lfumonths, -lfuyears,
          -lfumets, -dateofpmyear, -secondary, -lbd_cat, -age_cat, -t, -t2, -with3)
 
@@ -24,7 +24,7 @@ roc_data_ngs <- data_ngs %>%
                              (lfuyears >= 5 & (is.na(onsetofmm) | lfumets >= 5)) ~ "No mets"),
          outcome_binary = if_else(outcome == "Mets", 1, 0)) %>%
   filter(!is.na(outcome)) %>%
-  select(-oob, -diagnosis, -dateofpm, -secondarytreatment, -followup, -genetictest, -chr1,
+  select(-oob, -diagnosis, -dateofpm, -secondarytreatment, -followup, -chr1,
          -ch6p, -ch6q, -chr8p, -nbap1, -comments, -onsetofmm, -lfumonths, -lfuyears,
          -lfumets, -dateofpmyear, -secondary, -lbd_cat, -age_cat, -t, -t2, -with3)
 

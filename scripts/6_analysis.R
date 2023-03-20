@@ -93,6 +93,14 @@ roc_data %>%
 roc_data %>%
   count(primarytreatment)
 
+roc_data %>%
+  filter(!is.na(chr3)) %>%
+  count(genetictest)
+
+roc_data %>%
+  filter(primarytreatment == "enucleation") %>%
+  count(chr3)
+
 # Figure 1: Distribution plots (full dataset)----------------------------------------------------------
 dist_lumpo <- roc_data %>%
   ggplot(aes(MM)) +
@@ -1027,12 +1035,12 @@ calc_saving(135.09, 200, 0.55, 0.37)
 
 
 ### Save all outputs
-ggsave(here("outputs", "fig1.png"), plot = (dist_lumpo + dist_ajcc), width = 8.27, height = 4, units = "in")
-ggsave(here("outputs", "fig2.png"), plot = fig2, width = 5, height = 5, units = "in")
-ggsave(here("outputs", "fig3.png"), plot = (fig3a + fig3b), width = 8.27, height = 4, units = "in")
-ggsave(here("outputs", "fig5.png"), plot = fig5, width = 5, height = 5, units = "in")
-ggsave(here("outputs", "figs4.png"), plot = (figs4), width = 8.27, height = 4, units = "in")
-ggsave(here("outputs", "fig4.png"), plot = fig4, width = 5, height = 5, units = "in")
+ggsave(here("outputs", "fig1.jpeg"), plot = (dist_lumpo + dist_ajcc), width = 8.27, height = 4, units = "in")
+ggsave(here("outputs", "fig2.jpeg"), plot = fig2, width = 5, height = 5, units = "in")
+ggsave(here("outputs", "fig3.jpeg"), plot = (fig3a + fig3b), width = 8.27, height = 4, units = "in")
+ggsave(here("outputs", "fig5.jpeg"), plot = fig5, width = 5, height = 5, units = "in")
+ggsave(here("outputs", "figs4.jpeg"), plot = (figs4), width = 8.27, height = 4, units = "in")
+ggsave(here("outputs", "fig4.jpeg"), plot = fig4, width = 5, height = 5, units = "in")
 
 
 

@@ -5,14 +5,14 @@ date: '2023-02-27'
 output: 
   github_document: default
   word_document:
-          reference_docx: word_style1.docx
+          reference_docx: word_style2.docx
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, dpi = 300)
 ```
 
-### Purpose of this document
+## Purpose of this document
 
 This is intended to explain the analytic code for the paper 'Sensitivity and specificity of different prognostic systems when used to stratify for surveillance in a population of uveal melanoma patients'. I would recommend reading the paper before trying to understand the code. There is an R script called 'Analysis' in the 'scripts' folder. Running that script produces all the plots and summaries that are in the paper. This document walks through the code in that script. The data is pseudonimised but not publicly available because it is sensitive data and there is a danger of re-identification. 
 
@@ -53,7 +53,7 @@ roc_data <- roc_data %>%
 ```
 
 
-### Table 2: Descriptive statistics
+## Table 2: Descriptive statistics
 
 This is all self-explanatory so I've just included a few example lines and all the outputs went into Table 2 of the paper.I used either count(), median(), or range() for each column as appropriate. Note that all the counts, medians and ranges are all consistent with previously published estimates so don't raise any data quality concerns. 
 ```{r}
@@ -111,7 +111,7 @@ bar_chr3 <- roc_data %>%
 bar_chr3
 ```
 
-### Table 3: Stratify the dataset into high and low risk categories
+## Table 3: Stratify the dataset into high and low risk categories
 
 Stratifying the dataset means deciding on a cutoff value above which patients are classified as 'high-risk' and therefore enrolled in surveillance. In the example below, all patients to the right of the red dashed line are considered high-risk.
 
@@ -284,7 +284,7 @@ m3_tibble <- tibble(
   )
 ```
 
-### ROC Analysis: Calculate AUCs with cis
+## ROC Analysis: Calculate AUCs with cis
 The AUCs relate to the ROC curves in figure 2 and are given in the text of the paper.
 ```{r}
 roc_lumpo <- rocit(
@@ -294,7 +294,7 @@ roc_lumpo <- rocit(
 paste("roc_data lumpo", auc_label(roc_lumpo))
 ```
 
-### Figure 2
+## Figure 2
 To make the plots that have the roc curves as well as labelled point estimates I've used geom_roc, then overlaid points, labels and confidence intervals as annotations because ggplot2 doesn't support the combination of points and roc curves (which is why the code for it is so long!). If you can show me a better way I will buy you a coffee.
 ```{r}
 longdata <- melt_roc(roc_data, "outcome_binary", c("MM", "score")) %>%
@@ -391,7 +391,7 @@ fig2 <- ggplot(longdata, aes(d = D, m = M, color = name)) +
 fig2
 ```
 
-### Splitting the data into two different subpopulations
+## Splitting the data into two different subpopulations
 Chromosome 3 is an important prognostic factor in LPM and LUMPO and a non-random subset of patients do not have a chromosome 3 result (discussed in paper). Therefore I wanted to consider the performance of the models on each subpopulation separately. This code splits the dataset into these two subpopulations.
 ```{r}
 roc_data <- roc_data %>%
@@ -439,7 +439,7 @@ figs4a + figs4b
 
 All the code discussed previously is repeated for roc_data2 and roc_data3 to result in figure 3.
 
-### Figure 4: LUMPO strategy with different cut-offs for two subpopulations
+## Figure 4: LUMPO strategy with different cut-offs for two subpopulations
 Given that LUMPO and LPM are less accurate without a chromosome 3 result, it was decided that a more conservative cut-off should be used so that high sensitvity is maintained for patients lacking chromosome 3. The following code applies a different cut-off depending on whether a chromosome 3 result is present, then summarises that sensitvty and specificity of this strategy overall.
 ```{r}
 roc_data <- roc_data %>% mutate(
@@ -501,7 +501,7 @@ strategies %>% ggplot(aes(x = inv_spec, y = sensitivity)) +
   theme(legend.background = element_blank())
 ```
 
-### Cost saving calculation
+## Cost saving calculation
 The paper gives an estimate for the cost saving acheived by switched from a less specific system for stratification to a more specific one, given equal sensitivity. When a system is more specific there are fewer false positives and therefore fewer people scanned. I made this custom function which takes four arguments - the cost of a scan, the population of patients and the specificity of two systems being compared.
 
 It then works out the difference in false positives and the difference in pounds.
